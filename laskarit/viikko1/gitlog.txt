@@ -1,0 +1,120 @@
+commit d873c0f6d05e0e3d07f4782c4d90636efd1fac7f
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:56:26 2021 +0200
+
+    vika commit
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d03a11303d1939fd11dc48ef8886f819274f77c
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:52:27 2021 +0200
+
+    Revert "test"
+    
+    This reverts commit 9eebbf081b038be307911b57a73f13f958c2cb9a.
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 1 -
+ 3 files changed, 1 deletion(-)
+
+commit 9eebbf081b038be307911b57a73f13f958c2cb9a
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:52:11 2021 +0200
+
+    test
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 1 +
+ 3 files changed, 1 insertion(+)
+
+commit 8df4c0c31e7954b2bb024b2ae3ce1dbe0f3b25fa
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:37:07 2021 +0200
+
+    harjoittelua
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 60df317c7f670416a9de3562a943407c9cc0751f
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:34:45 2021 +0200
+
+    -p lisäys
+
+ eka.txt    | 2 +-
+ kolmas.txt | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 785a33d150ab6da57ae2a1c9a9f8d6034264b1af
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:33:49 2021 +0200
+
+    nimen muutos
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5b700dbcfd9cd6aca5081eb0f05da9c154789271
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:32:47 2021 +0200
+
+    toinen.txt poisto
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 3ef421c5ed5860fe2f1ec016045426d1abb28f86
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:31:20 2021 +0200
+
+    neljäs muutos
+
+ stuff/jokin_tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ca5c23c7819c5363070e4c131f245587bea34798
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:30:25 2021 +0200
+
+    toinen ja kolmas muutos
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit d734e7fee0266c7a7df8bf2ea9a2644b60dbe51b
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:29:27 2021 +0200
+
+    kolmas
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit b15436906738816f2f57fe1c37defa511c0656f4
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:28:58 2021 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit c5eefcffe2526ec60f800ffe6a0e4f959482296b
+Author: ilkkaluu <xilehx@gmail.com>
+Date:   Tue Mar 23 13:28:06 2021 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
