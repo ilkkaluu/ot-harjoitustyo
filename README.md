@@ -11,7 +11,10 @@ Sovellus auttaa käyttäjää pitämään kirjaa muun muuassa kalastuskerroistaa
 TBD
 
 ## Ohjeita  
-WIP  
+### Käynnistys
+Projektin voi ladata GitHubista, jonka jälkeen sen voi suorittaa mm. komentorivikomennolla  
+>  mvn compile exec:java -Dexec.mainClass=kalapassi.ui.KalapassiUi
+
 
 ## Komentorivikomennot  
 WIP
