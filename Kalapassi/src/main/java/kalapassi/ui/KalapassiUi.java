@@ -1,18 +1,14 @@
 package kalapassi.ui;
 
-import java.io.IOException;
-import javafx.application.Application;
+import java.io.*;
+import javafx.application.*;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.scene.text.*;
+import javafx.stage.*;
 
 public class KalapassiUi extends Application {
 
@@ -64,6 +60,16 @@ public class KalapassiUi extends Application {
         stage.setTitle("Kalapassi v. 0.1");
         stage.setScene(loginScene);
         stage.show();
+        
+        quitBtn.setOnAction((ActionEvent stop) -> {
+            System.out.println("Application shutting down.");
+            stop();
+        });
+    }
+    
+    @Override
+    public void stop() {
+        Platform.exit();
     }
 
     public static void main(String[] args) {
