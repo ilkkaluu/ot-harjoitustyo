@@ -60,13 +60,68 @@ public class KalapassiUi extends Application {
         stage.setTitle("Kalapassi v. 0.1");
         stage.setScene(loginScene);
         stage.show();
-        
+
+        //--
+        GridPane registerGrid = new GridPane();
+        registerGrid.setPadding(new Insets(10, 10, 10, 10));
+        registerGrid.setMinSize(300, 300);
+        registerGrid.setVgap(10);
+        registerGrid.setHgap(10);
+
+        Text nameText = new Text("Your name: ");
+        TextField nameTextField = new TextField();
+        Text regText = new Text("Set username (a-z)");
+        TextField regTextField = new TextField();
+        Button regBtn = new Button();
+        regBtn.setText("Create an account");
+        Button backToLogin = new Button();
+        backToLogin.setText("Cancel");
+
+        registerGrid.add(nameText, 0, 1);                                       //register components
+        registerGrid.add(nameTextField, 1, 1);
+        registerGrid.add(regText, 0, 3);
+        registerGrid.add(regTextField, 1, 3);
+        registerGrid.add(regBtn, 1, 5);
+        registerGrid.add(backToLogin, 1, 6);
+
+        Text regNotificationName = new Text("");
+        Text regNotificationUsername = new Text("");
+
+        registerGrid.add(regNotificationName, 1, 2);
+        registerGrid.add(regNotificationUsername, 1, 4);
+
+        Pane regPane = new Pane();
+        regPane.getChildren().add(registerGrid);
+
+        Scene regScene = new Scene(regPane, 450, 250);
+
+        //--
+        createUserLink.setOnAction((ActionEvent push) -> {
+            regNotificationName.setText("");
+            regNotificationUsername.setText("");
+            regBtn.setOnAction((ActionEvent e) -> {
+                boolean typeError = false;
+                nameTextField.setText("");
+                regTextField.setText("");
+            });
+
+            backToLogin.setOnAction((ActionEvent e) -> {
+                logNotification.setText("");
+                stage.setScene(loginScene);
+                stage.show();
+            });
+
+            stage.setScene(regScene);
+            stage.show();
+
+        });
+
         quitBtn.setOnAction((ActionEvent stop) -> {
             System.out.println("Application shutting down.");
             stop();
         });
     }
-    
+
     @Override
     public void stop() {
         Platform.exit();
