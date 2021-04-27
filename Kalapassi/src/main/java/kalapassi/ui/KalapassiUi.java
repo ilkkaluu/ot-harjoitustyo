@@ -19,7 +19,7 @@ public class KalapassiUi extends Application {
         startGrid.setVgap(10);
         startGrid.setHgap(10);
 
-        Text logTitle = new Text("Kalapassi v. 0.1");                        //start screen components
+        Text logTitle = new Text("Kalapassi v. 0.2");                        //start screen components
         logTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
         Text newUserText = new Text("No account yet?");
@@ -57,7 +57,7 @@ public class KalapassiUi extends Application {
 
         Text welcome = new Text("");
 
-        stage.setTitle("Kalapassi v. 0.1");
+        stage.setTitle("Kalapassi v. 0.2");
         stage.setScene(loginScene);
         stage.show();
 
@@ -96,6 +96,57 @@ public class KalapassiUi extends Application {
         Scene regScene = new Scene(regPane, 450, 250);
 
         //--
+        GridPane menu = new GridPane();
+        Scene menuScene = new Scene(menu, 500, 400);                            //menu components
+
+        menu.setPadding(new Insets(10, 10, 10, 10));
+        menu.setMinSize(300, 300);
+        menu.setVgap(5);
+        menu.setHgap(5);
+
+        Text menuText = new Text("MAIN MENU");
+        menuText.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        welcome.setFont(Font.font("Impact", FontWeight.NORMAL, 14));
+        Text tutorial = new Text("Here you can: \n- add caught fish \n- follow your stats \n- receive points from the caught fish");
+        Button addCatch = new Button("Add a catch");
+        Button stats = new Button("Personal statistics");
+        Button leaderboard = new Button("Leaderboards");
+
+        Button logout = new Button("Logout");
+
+        Button quit = new Button("Quit");
+
+        menu.add(menuText, 0, 0);
+        menu.add(welcome, 0, 1);
+        menu.add(tutorial, 0, 2);
+        menu.add(addCatch, 0, 4);
+        menu.add(stats, 0, 5);
+        menu.add(leaderboard, 0, 6);
+        menu.add(logout, 4, 4);
+        menu.add(quit, 4, 6);
+
+        //--
+        GridPane catchMenu = new GridPane();
+        Scene catchScene = new Scene(catchMenu, 500, 400);
+
+        catchMenu.setPadding(new Insets(10, 10, 10, 10));                        //caught fish menu
+        catchMenu.setMinSize(300, 300);
+        catchMenu.setVgap(5);
+        catchMenu.setHgap(5);
+
+        Text catchText = new Text("CATCH MENU");
+        catchText.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        Button back2main = new Button("Back");
+        
+        catchMenu.add(catchText, 0, 0);
+        catchMenu.add(back2main, 20, 20);
+
+        //--
+        loginBtn.setOnAction((ActionEvent push) -> {
+            stage.setScene(menuScene);
+            stage.show();
+        });
+
         createUserLink.setOnAction((ActionEvent push) -> {
             regNotificationName.setText("");
             regNotificationUsername.setText("");
@@ -107,6 +158,7 @@ public class KalapassiUi extends Application {
 
             backToLogin.setOnAction((ActionEvent e) -> {
                 logNotification.setText("");
+                nameTextField.clear();
                 stage.setScene(loginScene);
                 stage.show();
             });
@@ -114,6 +166,26 @@ public class KalapassiUi extends Application {
             stage.setScene(regScene);
             stage.show();
 
+        });
+
+        addCatch.setOnAction((ActionEvent catchAdd) -> {
+            stage.setScene(catchScene);
+            stage.show();
+        });
+        
+        back2main.setOnAction((ActionEvent back2menu) -> {
+            stage.setScene(menuScene);
+            stage.show();
+        });
+
+        logout.setOnAction((ActionEvent back2Login) -> {
+            stage.setScene(loginScene);
+            stage.show();
+        });
+
+        quit.setOnAction((ActionEvent stop) -> {
+            System.out.println("Application shutting down.");
+            stop();
         });
 
         quitBtn.setOnAction((ActionEvent stop) -> {

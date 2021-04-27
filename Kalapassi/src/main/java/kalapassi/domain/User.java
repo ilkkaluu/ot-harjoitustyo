@@ -52,4 +52,12 @@ public class User {
         User other = (User) obj;
         return username.equals(other.username);
     }
+
+    List<Catch> getCatches() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    boolean addCatch(Catch c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

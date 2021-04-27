@@ -8,7 +8,7 @@ Sovellus auttaa käyttäjää pitämään kirjaa muun muuassa kalastuskerroistaa
 * [Vaativuusmäärittely](https://github.com/ilkkaluu/ot-harjoitustyo/blob/master/documentation/SRS.md)
 
 ## Releaset  
-TBD
+[Viikko 5]()
 
 ## Ohjeita  
 ### Käynnistys
