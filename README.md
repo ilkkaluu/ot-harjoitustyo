@@ -20,4 +20,5 @@ Projektin voi ladata GitHubista, jonka jälkeen sen voi suorittaa mm. komentoriv
 ### Checkstyle  
 Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla  
 > mvn jxr:jxr checkstyle:checkstyle  
+
 Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto target/site/checkstyle.html
