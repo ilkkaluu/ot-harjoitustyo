@@ -2,15 +2,15 @@ package kalapassi.domain;
 
 import java.util.*;
 
-public class Catch {
+public class Fish {
 
     private int id;
     private String fish;
     private int points;
     private User user;
-    private List<Catch> catchList;
+    private List<Fish> catchList;
 
-    public Catch(String fish, int points, User user) {
+    public Fish(String fish, int points, User user) {
         this.id = id;
         this.fish = fish;
         this.points = 0;
@@ -18,7 +18,7 @@ public class Catch {
         this.catchList = new ArrayList<>();
     }
 
-    public Catch(String fish, int points) {
+    public Fish(String fish, int points) {
         this.fish = fish;
         this.points = 0;
     }
@@ -31,7 +31,7 @@ public class Catch {
         return this.fish;
     }
 
-    public List<Catch> getCatches() {
+    public List<Fish> getCatches() {
         return this.catchList;
     }
 
@@ -44,16 +44,16 @@ public class Catch {
         return this.id;
     }
 
-    public boolean addCatch(Catch c) {
+    public boolean addCatch(Fish c) {
         return this.catchList.add(c);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Catch)) {
+        if (!(obj instanceof Fish)) {
             return false;
         }
-        Catch other = (Catch) obj;
+        Fish other = (Fish) obj;
         return user.equals(other.user);
     }
 }

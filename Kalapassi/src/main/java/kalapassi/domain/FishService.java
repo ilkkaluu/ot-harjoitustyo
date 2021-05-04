@@ -3,19 +3,19 @@ package kalapassi.domain;
 import java.util.*;
 import kalapassi.dao.*;
 
-public class CatchService {
+public class FishService {
 
-    private CatchDao catchDao;
+    private FishDao catchDao;
     private UserDao userDao;
     private User loggedIn;
-    private Catch catchFish;
+    private Fish catchFish;
 
-    public CatchService(CatchDao catchDao, UserDao userDao) {
+    public FishService(FishDao catchDao, UserDao userDao) {
         this.userDao = userDao;
         this.catchDao = catchDao;
     }
 
-    public List<Catch> getCatches() {
+    public List<Fish> getCatches() {
         if (loggedIn == null) {
             return new ArrayList<>();
         }
@@ -64,7 +64,7 @@ public class CatchService {
     }
 
     public boolean addCatch(String fish, int points) {
-        Catch c = new Catch(fish, points);
+        Fish c = new Fish(fish, points);
 
         if (loggedIn.addCatch(c)) {
             try {

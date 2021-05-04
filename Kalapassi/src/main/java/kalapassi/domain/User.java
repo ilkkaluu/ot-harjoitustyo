@@ -7,7 +7,7 @@ import java.util.*;
 public class User {
     private String name;
     private String username;
-    private List<Catch> catchList;
+    private List<Fish> catchList;
     private int points;
     private int caughtFishAmount;
     
@@ -53,11 +53,11 @@ public class User {
         return username.equals(other.username);
     }
 
-    List<Catch> getCatches() {
+    List<Fish> getCatches() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    boolean addCatch(Catch c) {
+    boolean addCatch(Fish c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

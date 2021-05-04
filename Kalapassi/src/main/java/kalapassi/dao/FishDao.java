@@ -1,11 +1,11 @@
 package kalapassi.dao;
 
 import java.util.*;
-import kalapassi.domain.Catch;
+import kalapassi.domain.Fish;
 
-public interface CatchDao {
+public interface FishDao {
 
-    List<Catch> getAll();
+    List<Fish> getAll();
 
     boolean addCatch(String fish);
 

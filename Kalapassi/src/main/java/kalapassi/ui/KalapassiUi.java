@@ -2,6 +2,8 @@ package kalapassi.ui;
 
 import java.io.*;
 import javafx.application.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.*;
@@ -19,7 +21,7 @@ public class KalapassiUi extends Application {
         startGrid.setVgap(10);
         startGrid.setHgap(10);
 
-        Text logTitle = new Text("Kalapassi v. 0.2");                        //start screen components
+        Text logTitle = new Text("Kalapassi v. 0.3");                        //start screen components
         logTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
         Text newUserText = new Text("No account yet?");
@@ -38,7 +40,8 @@ public class KalapassiUi extends Application {
         Button quitBtn = new Button();
         quitBtn.setText("Quit");
 
-        //--
+        //----
+        
         startGrid.add(logTitle, 0, 0);
         startGrid.add(usernameText, 0, 1);
         startGrid.add(accNameFeed, 1, 1);                                            //start screen & login screen components
@@ -57,11 +60,12 @@ public class KalapassiUi extends Application {
 
         Text welcome = new Text("");
 
-        stage.setTitle("Kalapassi v. 0.2");
+        stage.setTitle("Kalapassi v. 0.3");
         stage.setScene(loginScene);
         stage.show();
 
-        //--
+        //----
+        
         GridPane registerGrid = new GridPane();
         registerGrid.setPadding(new Insets(10, 10, 10, 10));
         registerGrid.setMinSize(300, 300);
@@ -95,7 +99,8 @@ public class KalapassiUi extends Application {
 
         Scene regScene = new Scene(regPane, 450, 250);
 
-        //--
+        //----
+        
         GridPane menu = new GridPane();
         Scene menuScene = new Scene(menu, 500, 400);                            //menu components
 
@@ -125,7 +130,8 @@ public class KalapassiUi extends Application {
         menu.add(logout, 4, 4);
         menu.add(quit, 4, 6);
 
-        //--
+        //----
+        
         GridPane catchMenu = new GridPane();
         Scene catchScene = new Scene(catchMenu, 500, 400);
 
@@ -136,12 +142,69 @@ public class KalapassiUi extends Application {
 
         Text catchText = new Text("CATCH MENU");
         catchText.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        Button back2main = new Button("Back");
-        
-        catchMenu.add(catchText, 0, 0);
-        catchMenu.add(back2main, 20, 20);
+        Text catchHelp = new Text("Add a caught fish by choosing a species from the menu");
+        Button confirmCatch = new Button("Confirm");
+        Button back2main = new Button("Cancel");
 
-        //--
+        ObservableList<String> fishes
+                = FXCollections.observableArrayList(
+                        "Grayling",
+                        "Perch",
+                        "Rainbow trout",
+                        "Roach",
+                        "Trout"
+                );
+        final ComboBox fishBox = new ComboBox(fishes);
+
+        catchMenu.add(catchText, 0, 0);
+        catchMenu.add(catchHelp, 0, 5);
+        catchMenu.add(fishBox, 0, 10);
+        catchMenu.add(confirmCatch, 0, 15);
+        catchMenu.add(back2main, 0, 20);
+
+        //----
+        
+        BorderPane statMenu = new BorderPane();                                 //personal stat screen components
+        VBox statMenuLeft = new VBox();
+        statMenuLeft.setSpacing(10);
+        statMenuLeft.setPadding(new Insets(10));
+        Button toTopTen = new Button("To leaderboards");
+        Button toStats = new Button("Refresh");
+        Button back = new Button("Back");
+        statMenuLeft.getChildren().addAll(toStats, toTopTen, back);
+        statMenu.setBottom(statMenuLeft);
+
+        VBox statMenuCenter = new VBox();
+        statMenuCenter.setSpacing(8);
+        statMenuCenter.setPadding(new Insets(10));
+        Text username = new Text();
+        Text userExerc = new Text("Fish caught: 0");
+        Text userPoints = new Text("Total points: " + " 0 pts");
+        statMenuCenter.getChildren().addAll(username, userExerc, userPoints);
+        statMenu.setTop(statMenuCenter);
+
+        //----
+        
+        BorderPane topTenMenu = new BorderPane();                               //leaderboard components
+        VBox topMenuLeft = new VBox();
+        topMenuLeft.setSpacing(10);
+        topMenuLeft.setPadding(new Insets(10));
+        Button toTopTen1 = new Button("Refresh");
+        Button back1 = new Button("Back");
+        Button toStats1 = new Button("To personal stats");
+        topMenuLeft.getChildren().addAll(toTopTen1, toStats1, back1);
+        VBox topMenuCenter = new VBox();
+        topMenuCenter.setSpacing(10);
+        topMenuCenter.setPadding(new Insets(10));
+
+        topTenMenu.setBottom(topMenuLeft);
+        topTenMenu.setTop(topMenuCenter);
+
+        Scene statScene = new Scene(statMenu, 400, 250);
+        Scene topTenScene = new Scene(topTenMenu, 400, 400);
+
+        //----
+        
         loginBtn.setOnAction((ActionEvent push) -> {
             stage.setScene(menuScene);
             stage.show();
@@ -167,16 +230,41 @@ public class KalapassiUi extends Application {
             stage.show();
 
         });
-
+        
+        //-----
+        
         addCatch.setOnAction((ActionEvent catchAdd) -> {
             stage.setScene(catchScene);
             stage.show();
         });
-        
+
         back2main.setOnAction((ActionEvent back2menu) -> {
             stage.setScene(menuScene);
             stage.show();
         });
+
+        //----
+        
+        stats.setOnAction((ActionEvent stat) -> {
+            stage.setScene(statScene);
+            stage.show();
+        });
+        leaderboard.setOnAction((ActionEvent leader) -> {
+            stage.setScene(topTenScene);
+            stage.show();
+        });
+
+        back.setOnAction((ActionEvent statsBackBtn) -> {
+            stage.setScene(menuScene);
+            stage.show();
+        });
+
+        back1.setOnAction((ActionEvent statsBackBtn1) -> {
+            stage.setScene(menuScene);
+            stage.show();
+        });
+        
+        //----
 
         logout.setOnAction((ActionEvent back2Login) -> {
             stage.setScene(loginScene);

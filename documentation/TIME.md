@@ -5,6 +5,10 @@
 * 20.4.2021: 1h - UI-lisäyksiä & Checkstyle
 * 22.4.2021: 1h - DAO
 * 25.4.2021: 1h - UI-lisäyksiä
-* 27.4.2021: 3h - Domain- ja UI-lisäyksiä
+* 27.4.2021: 3h - Domain- ja UI-lisäyksiä  
+* 30.4.2021: 2h - DAO  
+* 3.5.2021: 3h - Domain- ja UI-lisäyksiä  
+* 4.5.2021: 5h - Tiedon säilytysmetodeihin tutustumista ja UI-lisäyksiä  
 
-        Yht: 10h
+
+        Yht: 20h
