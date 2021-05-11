@@ -30,6 +30,10 @@ public class Fish {
     public String getCatch() {
         return this.fish;
     }
+    
+    public int getPoints() {
+        return this.points;
+    }
 
     public List<Fish> getCatches() {
         return this.catchList;

@@ -38,13 +38,29 @@ public class FileFishDao implements FishDao {
     }
 
     @Override
-    public boolean addCatch(String fish) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean addCatch(String line) {
+        String[] fishInfo = line.split(";");
+        String fish = fishInfo[0];
+        String points = fishInfo[1];
+        latest = new Fish(fish, Integer.parseInt(fish));
+        return catches.add(latest);
     }
 
     @Override
     public void save() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (FileWriter writer = new FileWriter(new File(file))) {
+            for (Fish f : catches) {
+                writer.write(f.getUsername() + "\n");
+                writer.write("Catches & points: ");
+                writer.write("\n");
+                if (!f.getCatches().isEmpty()) {
+                    for (Fish fi : f.getCatches()) {
+                        writer.write(fi.getCatch() + ";" + fi.getPoints() + "\n");
+                    }
+                }
+                writer.write("\n");
+            }
+        }
     }
 
 }

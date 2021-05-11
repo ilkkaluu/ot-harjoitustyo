@@ -35,8 +35,9 @@ public class User {
         return this.points;
     }
     
-    public void addCatch() {
-        this.caughtFishAmount++;
+    public boolean addCatch(String fishType, int points) {
+        Fish f = new Fish(fishType, points);
+        return this.catchList.add(f);
     }
     
     public int getCaughtFishAmount() {

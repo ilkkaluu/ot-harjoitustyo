@@ -9,6 +9,7 @@
 * 30.4.2021: 2h - DAO  
 * 3.5.2021: 3h - Domain- ja UI-lisäyksiä  
 * 4.5.2021: 5h - Tiedon säilytysmetodeihin tutustumista ja UI-lisäyksiä  
+* 11.5.2021: 2h - DAO-lisäyksiä
 
 
-        Yht: 20h
+        Yht: 22h
