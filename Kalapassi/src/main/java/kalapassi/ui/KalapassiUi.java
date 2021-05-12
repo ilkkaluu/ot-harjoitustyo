@@ -1,6 +1,7 @@
 package kalapassi.ui;
 
 import java.io.*;
+import java.util.Properties;
 import javafx.application.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,10 +10,20 @@ import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import static javafx.scene.paint.Color.*;
 import javafx.scene.text.*;
 import javafx.stage.*;
+import kalapassi.dao.UserDao;
+import kalapassi.dao.FishDao;
+import kalapassi.dao.FileFishDao;
+import kalapassi.dao.FileUserDao;
+import kalapassi.domain.User;
+import kalapassi.domain.Fish;
+import kalapassi.domain.FishService;
 
 public class KalapassiUi extends Application {
+    
+    private FishService fishService;
 
     public void start(Stage stage) throws IOException {
         GridPane startGrid = new GridPane();
@@ -41,7 +52,6 @@ public class KalapassiUi extends Application {
         quitBtn.setText("Quit");
 
         //----
-        
         startGrid.add(logTitle, 0, 0);
         startGrid.add(usernameText, 0, 1);
         startGrid.add(accNameFeed, 1, 1);                                            //start screen & login screen components
@@ -65,7 +75,6 @@ public class KalapassiUi extends Application {
         stage.show();
 
         //----
-        
         GridPane registerGrid = new GridPane();
         registerGrid.setPadding(new Insets(10, 10, 10, 10));
         registerGrid.setMinSize(300, 300);
@@ -100,7 +109,6 @@ public class KalapassiUi extends Application {
         Scene regScene = new Scene(regPane, 450, 250);
 
         //----
-        
         GridPane menu = new GridPane();
         Scene menuScene = new Scene(menu, 500, 400);                            //menu components
 
@@ -131,7 +139,6 @@ public class KalapassiUi extends Application {
         menu.add(quit, 4, 6);
 
         //----
-        
         GridPane catchMenu = new GridPane();
         Scene catchScene = new Scene(catchMenu, 500, 400);
 
@@ -163,7 +170,6 @@ public class KalapassiUi extends Application {
         catchMenu.add(back2main, 0, 20);
 
         //----
-        
         BorderPane statMenu = new BorderPane();                                 //personal stat screen components
         VBox statMenuLeft = new VBox();
         statMenuLeft.setSpacing(10);
@@ -184,7 +190,6 @@ public class KalapassiUi extends Application {
         statMenu.setTop(statMenuCenter);
 
         //----
-        
         BorderPane topTenMenu = new BorderPane();                               //leaderboard components
         VBox topMenuLeft = new VBox();
         topMenuLeft.setSpacing(10);
@@ -204,7 +209,6 @@ public class KalapassiUi extends Application {
         Scene topTenScene = new Scene(topTenMenu, 400, 400);
 
         //----
-        
         loginBtn.setOnAction((ActionEvent push) -> {
             stage.setScene(menuScene);
             stage.show();
@@ -213,8 +217,47 @@ public class KalapassiUi extends Application {
         createUserLink.setOnAction((ActionEvent push) -> {
             regNotificationName.setText("");
             regNotificationUsername.setText("");
+
             regBtn.setOnAction((ActionEvent e) -> {
                 boolean typeError = false;
+                boolean existingError = false;
+                nameTextField.setText("");
+                regTextField.setText("");
+
+                if (nameTextField.getText().length() < 3 || nameTextField.getText().length() > 12) {
+                    regNotificationName.setFill(RED);
+                    regNotificationName.setText("Name length must be between 3-12");
+                    typeError = true;
+                }
+
+                if (regTextField.getText().length() < 3 || regTextField.getText().length() > 12) {
+                    regNotificationUsername.setFill(RED);
+                    regNotificationUsername.setText("Username length must be between 3-12");
+                    typeError = true;
+                }
+
+                if (!typeError) {
+                    if (!fishService.createUser(nameTextField.getText(), regTextField.getText())) {
+                        regNotificationUsername.setFill(RED);
+                        regNotificationUsername.setText("Username already exists");
+                        existingError = true;
+                    }
+                }
+
+                if (!typeError && !existingError) {
+                    try {
+                        fishService.createUser(nameTextField.getText(), regTextField.getText());
+                        stage.setScene(loginScene);
+                        System.out.println("Registeration successful");
+                        regNotificationUsername.setText("");
+                        regNotificationName.setText("");
+                        nameTextField.setText("");
+                        regTextField.setText("");
+                    } catch (Exception ex) {
+                        regNotificationName.setText("Something went wrong");
+                        System.out.println(e);
+                    }
+                }
                 nameTextField.setText("");
                 regTextField.setText("");
             });
@@ -230,9 +273,8 @@ public class KalapassiUi extends Application {
             stage.show();
 
         });
-        
+
         //-----
-        
         addCatch.setOnAction((ActionEvent catchAdd) -> {
             stage.setScene(catchScene);
             stage.show();
@@ -244,7 +286,6 @@ public class KalapassiUi extends Application {
         });
 
         //----
-        
         stats.setOnAction((ActionEvent stat) -> {
             stage.setScene(statScene);
             stage.show();
@@ -263,9 +304,8 @@ public class KalapassiUi extends Application {
             stage.setScene(menuScene);
             stage.show();
         });
-        
-        //----
 
+        //----
         logout.setOnAction((ActionEvent back2Login) -> {
             stage.setScene(loginScene);
             stage.show();
@@ -282,6 +322,20 @@ public class KalapassiUi extends Application {
         });
     }
 
+    
+    @Override
+    public void init() throws Exception {
+        Properties prop = new Properties();
+        prop.load(new FileInputStream("config.file"));
+
+        String userFile = prop.getProperty("userFile");
+        String fishFile = prop.getProperty("fishFile");
+
+        FileUserDao userDao = new FileUserDao(userFile);
+        FileFishDao fishDao = new FileFishDao(fishFile, userDao);
+        fishService = new FishService(fishDao, userDao);
+    }
+    
     @Override
     public void stop() {
         Platform.exit();

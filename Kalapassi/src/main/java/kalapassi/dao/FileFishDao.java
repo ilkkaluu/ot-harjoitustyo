@@ -34,7 +34,7 @@ public class FileFishDao implements FishDao {
 
     @Override
     public List<Fish> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return latest.getCatches();
     }
 
     @Override
