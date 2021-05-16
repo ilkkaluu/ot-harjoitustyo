@@ -9,7 +9,7 @@ Sovellus auttaa käyttäjää pitämään kirjaa muun muuassa kalastuskerroistaa
 * [Työaikakirjanpito](https://github.com/ilkkaluu/ot-harjoitustyo/blob/master/documentation/TIME.md)  
 * [Arkkitehtuuri](https://github.com/ilkkaluu/ot-harjoitustyo/blob/master/documentation/ARCHITECTURE.md)
 * [Vaativuusmäärittely](https://github.com/ilkkaluu/ot-harjoitustyo/blob/master/documentation/SRS.md)  
-* [Käyttöohje]
+* [Käyttöohje](https://github.com/ilkkaluu/ot-harjoitustyo/blob/master/documentation/INSTRUCTIONS.md)
 
 ## Releaset  
 [Viikko 5](https://github.com/ilkkaluu/ot-harjoitustyo/releases/tag/viikko5)
