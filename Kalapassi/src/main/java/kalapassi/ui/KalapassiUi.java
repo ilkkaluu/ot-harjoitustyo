@@ -13,12 +13,8 @@ import javafx.scene.layout.*;
 import static javafx.scene.paint.Color.*;
 import javafx.scene.text.*;
 import javafx.stage.*;
-import kalapassi.dao.UserDao;
-import kalapassi.dao.FishDao;
 import kalapassi.dao.FileFishDao;
 import kalapassi.dao.FileUserDao;
-import kalapassi.domain.User;
-import kalapassi.domain.Fish;
 import kalapassi.domain.FishService;
 
 public class KalapassiUi extends Application {
@@ -32,7 +28,7 @@ public class KalapassiUi extends Application {
         startGrid.setVgap(10);
         startGrid.setHgap(10);
 
-        Text logTitle = new Text("Kalapassi v. 1.0");                        //start screen components
+        Text logTitle = new Text("Kalapassi v. 1.0");                                                   //start screen components
         logTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
         Text newUserText = new Text("No account yet?");
@@ -90,7 +86,7 @@ public class KalapassiUi extends Application {
         Button backToLogin = new Button();
         backToLogin.setText("Cancel");
 
-        registerGrid.add(nameText, 0, 1);                                       //register components
+        registerGrid.add(nameText, 0, 1);                                             //register components
         registerGrid.add(nameTextField, 1, 1);
         registerGrid.add(regText, 0, 3);
         registerGrid.add(regTextField, 1, 3);
@@ -110,7 +106,7 @@ public class KalapassiUi extends Application {
 
         //----
         GridPane menu = new GridPane();
-        Scene menuScene = new Scene(menu, 500, 400);                            //menu components
+        Scene menuScene = new Scene(menu, 500, 400);                                         //menu components
 
         menu.setPadding(new Insets(10, 10, 10, 10));
         menu.setMinSize(300, 300);
@@ -123,7 +119,6 @@ public class KalapassiUi extends Application {
         Text tutorial = new Text("Here you can: \n- add caught fish \n- follow your stats \n- receive points from the caught fish");
         Button addCatch = new Button("Add a catch");
         Button stats = new Button("Personal statistics");
-        //Button leaderboard = new Button("Leaderboards");
 
         Button logout = new Button("Logout");
 
@@ -134,7 +129,6 @@ public class KalapassiUi extends Application {
         menu.add(tutorial, 0, 2);
         menu.add(addCatch, 0, 4);
         menu.add(stats, 0, 6);
-        //menu.add(leaderboard, 0, 6);
         menu.add(logout, 4, 4);
         menu.add(quit, 4, 6);
 
@@ -142,7 +136,7 @@ public class KalapassiUi extends Application {
         GridPane catchMenu = new GridPane();
         Scene catchScene = new Scene(catchMenu, 500, 400);
 
-        catchMenu.setPadding(new Insets(10, 10, 10, 10));                        //caught fish menu
+        catchMenu.setPadding(new Insets(10, 10, 10, 10));                            //caught fish menu
         catchMenu.setMinSize(300, 300);
         catchMenu.setVgap(5);
         catchMenu.setHgap(5);
@@ -171,14 +165,13 @@ public class KalapassiUi extends Application {
         catchMenu.add(back2main, 0, 20);
 
         //----
-        BorderPane statMenu = new BorderPane();                                 //personal stat screen components
+        BorderPane statMenu = new BorderPane();                                                             //personal stat screen components
         VBox statMenuLeft = new VBox();
         statMenuLeft.setSpacing(10);
         statMenuLeft.setPadding(new Insets(10));
-        Button toTopTen = new Button("To leaderboards");
         Button toStats = new Button("Refresh");
         Button back = new Button("Back");
-        statMenuLeft.getChildren().addAll(toStats, toTopTen, back);
+        statMenuLeft.getChildren().addAll(toStats, back);
         statMenu.setBottom(statMenuLeft);
 
         VBox statMenuCenter = new VBox();
@@ -190,25 +183,7 @@ public class KalapassiUi extends Application {
         statMenuCenter.getChildren().addAll(username, userFishAmount, userPoints);
         statMenu.setTop(statMenuCenter);
 
-        //----
-        /*BorderPane topTenMenu = new BorderPane();                               //leaderboard components
-        VBox topMenuLeft = new VBox();
-        topMenuLeft.setSpacing(10);
-        topMenuLeft.setPadding(new Insets(10));
-        Button toTopTen1 = new Button("Refresh");
-        Button back1 = new Button("Back");
-        Button toStats1 = new Button("To personal stats");
-        topMenuLeft.getChildren().addAll(toTopTen1, toStats1, back1);
-        Text leaders = new Text("1. " + "\n" + "2. " + "\n" + "3. " + "\n" + "\n" + "\n");
-        VBox topMenuCenter = new VBox();
-        topMenuCenter.setSpacing(10);
-        topMenuCenter.setPadding(new Insets(10));
-        topMenuCenter.getChildren().add(leaders);
-
-        topTenMenu.setBottom(topMenuLeft);
-        topTenMenu.setTop(topMenuCenter);*/
         Scene statScene = new Scene(statMenu, 400, 250);
-        //Scene topTenScene = new Scene(topTenMenu, 400, 400);
 
         //----
         loginBtn.setOnAction((ActionEvent push) -> {
@@ -216,7 +191,6 @@ public class KalapassiUi extends Application {
                 stage.setScene(menuScene);
                 stage.show();
             }
-
         });
 
         createUserLink.setOnAction((ActionEvent push) -> {
@@ -230,13 +204,13 @@ public class KalapassiUi extends Application {
 
                 if (name.length() < 3 || name.length() > 12) {
                     regNotificationName.setFill(RED);
-                    regNotificationName.setText("Name length must be between 3-12");
+                    regNotificationName.setText("Username length must be between 3-12");
                     typeError = true;
                 }
 
                 if (userName.length() < 3 || userName.length() > 12) {
                     regNotificationUsername.setFill(RED);
-                    regNotificationUsername.setText("Username length must be between 3-12");
+                    regNotificationUsername.setText("Name length must be between 3-12");
                     typeError = true;
                 }
 
@@ -253,7 +227,7 @@ public class KalapassiUi extends Application {
                         }
                     } catch (Exception ex) {
                         regNotificationName.setText("Something went wrong");
-                        System.out.println(e);
+                        System.out.println(ex.getMessage());
                     }
                 }
                 nameTextField.setText("");
@@ -276,12 +250,15 @@ public class KalapassiUi extends Application {
         addCatch.setOnAction((ActionEvent catchAdd) -> {
             stage.setScene(catchScene);
             stage.show();
+        });
 
-            confirmCatch.setOnAction((ActionEvent catchConfirm) -> {
+        confirmCatch.setOnAction((ActionEvent catchConfirm) -> {
+            Object fishBoxValue = fishBox.getValue();
+            if (fishBoxValue != null) {
                 fishService.addCatch(fishBox.getValue().toString());
                 stage.setScene(menuScene);
                 stage.show();
-            });
+            }
         });
 
         back2main.setOnAction((ActionEvent back2menu) -> {
@@ -292,27 +269,17 @@ public class KalapassiUi extends Application {
         //----
         stats.setOnAction((ActionEvent stat) -> {
             username.setText("Username: " + fishService.getUsername());
-            userPoints.setText("Total points: " + fishService.getPoints() + " pts");
-            userFishAmount.setText("Fish caught: " + fishService.getCatches().size());
-            System.out.println(fishService.getCatches());
+            userPoints.setText("Total points: " + fishService.calculateCatchPoints() + " pts");
+            userFishAmount.setText("Fish caught: " + fishService.getLoggedUser().getCaughtFishAmount());
             stage.setScene(statScene);
             stage.show();
         });
-        /*leaderboard.setOnAction((ActionEvent leader) -> {
-            leaders.setText("1. " + "\n" + "2. " + "\n" + "3. " + "\n" + "\n" + "\n" + "You: " + fishService.getLoggedUser().getUsername() + ", " + fishService.getPoints());
-            stage.setScene(topTenScene);
-            stage.show();
-        });*/
 
         back.setOnAction((ActionEvent statsBackBtn) -> {
             stage.setScene(menuScene);
             stage.show();
         });
 
-        /* back1.setOnAction((ActionEvent statsBackBtn1) -> {
-            stage.setScene(menuScene);
-            stage.show();
-        });*/
         //----
         logout.setOnAction((ActionEvent back2Login) -> {
             fishService.logOut();
