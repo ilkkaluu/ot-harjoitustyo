@@ -16,6 +16,8 @@ Ohjelman voi ajaa ladattavan jar.tiedoston kautta komentorivikomennolla:
 Ohjelman voi suoittaa myös lataamalla lähdekoodin. Tällöin ohjelman voi ajaa esim. NetBeansissa avamaalla projektin ja kirjoittamalla komentorivikomennon hakemistossa Kalapassi/:  
 > mvn compile exec:java -Dexec.mainClass=kalapassi.ui.KalapassiUi  
 
+## Näkymät
+
 ### Kirjautumisnäkymä  
 Kirjautumisnäkymssä voi kirjautua sisään käyttäjätunnuksella ja painamalla "Login"-painiketta, siirtyä rekisteröintinäkymään "Register"-linkistä tai lopettaa ohjelman painamalla "Quit"-painiketta.  
 
