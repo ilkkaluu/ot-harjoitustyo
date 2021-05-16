@@ -5,14 +5,14 @@ import kalapassi.dao.*;
 
 public class FishService {
 
-    private FishDao catchDao;
+    private FishDao fishDao;
     private UserDao userDao;
     private User loggedIn;
     private Fish catchFish;
 
-    public FishService(FishDao catchDao, UserDao userDao) {
+    public FishService(FishDao fishDao, UserDao userDao) {
         this.userDao = userDao;
-        this.catchDao = catchDao;
+        this.fishDao = fishDao;
     }
 
     public List<Fish> getCatches() {
@@ -63,17 +63,19 @@ public class FishService {
         return true;
     }
 
-    public boolean addCatch(String fish, int points) {
-        Fish c = new Fish(fish, points);
+    public boolean addCatch(String fish) {
+        int points = -1;
+        
+        Fish c = new Fish(fish, points, loggedIn);
 
-        if (loggedIn.addCatch(c)) {
             try {
-                catchDao.save();
+                //catchDao.save();
+                fishDao.create(c);
             } catch (Exception e) {
                 return false;
             }
             return true;
-        }
-        return false;
+        //}
+        //return false;
     }
 }

@@ -67,7 +67,7 @@ public class FileUserDao implements UserDao {
                 String[] catchLine = line.split(";");
                 String catchType = catchLine[0];
                 String catchPoints = catchLine[1];
-                latest.addCatch(catchType, Integer.parseInt(catchPoints));
+                latest.addCatch(catchType);
 
                 if (reader.hasNext()) {
                     line = reader.nextLine();
@@ -78,13 +78,18 @@ public class FileUserDao implements UserDao {
         }
     }
 
-    @Override
+   /*@Override
     public boolean addUser(String line) {
         line = reader.nextLine();
         String[] parts = line.split(";");
         User u = new User(parts[0], parts[1]);
         latest = u;
         return users.add(u);
+    }*/
+
+    @Override
+    public boolean addUser(String line) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

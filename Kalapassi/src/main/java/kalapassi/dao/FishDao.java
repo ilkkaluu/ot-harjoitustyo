@@ -7,7 +7,7 @@ public interface FishDao {
 
     List<Fish> getAll();
 
-    boolean addCatch(String fish);
+    Fish create(Fish fish) throws Exception;
 
     void save() throws Exception;
 }

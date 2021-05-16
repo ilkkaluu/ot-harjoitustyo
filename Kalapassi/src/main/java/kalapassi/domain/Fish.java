@@ -13,21 +13,43 @@ public class Fish {
     public Fish(String fish, int points, User user) {
         this.id = id;
         this.fish = fish;
-        this.points = 0;
+        //this.points = 0;
+        if (fish.equals(("Grayling"))) {
+            this.points = 30;
+        } else if (fish.equals("Perch")) {
+            this.points = 5;
+        } else if (fish.equals("Rainbow Trout")) {
+            this.points = 20;
+        } else if (fish.equals("Roach")) {
+            this.points = 1;
+        } else if (fish.equals("Trout")) {
+            this.points = 25;
+        }
         this.user = user;
         this.catchList = new ArrayList<>();
     }
 
-    public Fish(String fish, int points) {
+    public Fish(String fish) {
         this.fish = fish;
-        this.points = 0;
+        if (fish.equals(("Grayling"))) {
+            this.points = 30;
+        } else if (fish.equals("Perch")) {
+            this.points = 5;
+        } else if (fish.equals("Rainbow Trout")) {
+            this.points = 20;
+        } else if (fish.equals("Roach")) {
+            this.points = 1;
+        } else if (fish.equals("Trout")) {
+            this.points = 25;
+        }
+        //this.points = 0;
     }
 
     public void setInt(int id) {
         this.id = id;
     }
 
-    public String getCatch() {
+    public String getFishType() {
         return this.fish;
     }
     

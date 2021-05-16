@@ -22,7 +22,7 @@ import kalapassi.domain.Fish;
 import kalapassi.domain.FishService;
 
 public class KalapassiUi extends Application {
-    
+
     private FishService fishService;
 
     public void start(Stage stage) throws IOException {
@@ -155,6 +155,7 @@ public class KalapassiUi extends Application {
 
         ObservableList<String> fishes
                 = FXCollections.observableArrayList(
+                        " ",
                         "Grayling",
                         "Perch",
                         "Rainbow trout",
@@ -183,10 +184,10 @@ public class KalapassiUi extends Application {
         VBox statMenuCenter = new VBox();
         statMenuCenter.setSpacing(8);
         statMenuCenter.setPadding(new Insets(10));
-        Text username = new Text();
-        Text userExerc = new Text("Fish caught: 0");
-        Text userPoints = new Text("Total points: " + " 0 pts");
-        statMenuCenter.getChildren().addAll(username, userExerc, userPoints);
+        Text username = new Text("Username: ");
+        Text userFishAmount = new Text("Fish caught: ");
+        Text userPoints = new Text("Total points: " + "  pts");
+        statMenuCenter.getChildren().addAll(username, userFishAmount, userPoints);
         statMenu.setTop(statMenuCenter);
 
         //----
@@ -210,8 +211,11 @@ public class KalapassiUi extends Application {
 
         //----
         loginBtn.setOnAction((ActionEvent push) -> {
-            stage.setScene(menuScene);
-            stage.show();
+            if (fishService.login(accNameFeed.getText())) {
+                stage.setScene(menuScene);
+                stage.show();
+            }
+
         });
 
         createUserLink.setOnAction((ActionEvent push) -> {
@@ -221,23 +225,25 @@ public class KalapassiUi extends Application {
             regBtn.setOnAction((ActionEvent e) -> {
                 boolean typeError = false;
                 boolean existingError = false;
+                String name = nameTextField.getText();
+                String userName = regTextField.getText();
                 nameTextField.setText("");
                 regTextField.setText("");
 
-                if (nameTextField.getText().length() < 3 || nameTextField.getText().length() > 12) {
+                if (name.length() < 3 || name.length() > 12) {
                     regNotificationName.setFill(RED);
                     regNotificationName.setText("Name length must be between 3-12");
                     typeError = true;
                 }
 
-                if (regTextField.getText().length() < 3 || regTextField.getText().length() > 12) {
+                if (userName.length() < 3 || userName.length() > 12) {
                     regNotificationUsername.setFill(RED);
                     regNotificationUsername.setText("Username length must be between 3-12");
                     typeError = true;
                 }
 
                 if (!typeError) {
-                    if (!fishService.createUser(nameTextField.getText(), regTextField.getText())) {
+                    if (!fishService.createUser(userName, name)) {
                         regNotificationUsername.setFill(RED);
                         regNotificationUsername.setText("Username already exists");
                         existingError = true;
@@ -246,7 +252,7 @@ public class KalapassiUi extends Application {
 
                 if (!typeError && !existingError) {
                     try {
-                        fishService.createUser(nameTextField.getText(), regTextField.getText());
+                        fishService.createUser(name, userName);
                         stage.setScene(loginScene);
                         System.out.println("Registeration successful");
                         regNotificationUsername.setText("");
@@ -278,6 +284,12 @@ public class KalapassiUi extends Application {
         addCatch.setOnAction((ActionEvent catchAdd) -> {
             stage.setScene(catchScene);
             stage.show();
+
+            confirmCatch.setOnAction((ActionEvent catchConfirm) -> {
+                fishService.addCatch(fishBox.getValue().toString());
+                stage.setScene(menuScene);
+                stage.show();
+            });
         });
 
         back2main.setOnAction((ActionEvent back2menu) -> {
@@ -287,6 +299,9 @@ public class KalapassiUi extends Application {
 
         //----
         stats.setOnAction((ActionEvent stat) -> {
+            username.setText("Username: " + fishService.getUsername());
+            userPoints.setText("Total points: " + fishService.getLoggedUser().getPoints() + " pts");
+            userFishAmount.setText("Fish caught: " + fishService.getLoggedUser().getCaughtFishAmount());
             stage.setScene(statScene);
             stage.show();
         });
@@ -322,7 +337,6 @@ public class KalapassiUi extends Application {
         });
     }
 
-    
     @Override
     public void init() throws Exception {
         Properties prop = new Properties();
@@ -335,7 +349,7 @@ public class KalapassiUi extends Application {
         FileFishDao fishDao = new FileFishDao(fishFile, userDao);
         fishService = new FishService(fishDao, userDao);
     }
-    
+
     @Override
     public void stop() {
         Platform.exit();

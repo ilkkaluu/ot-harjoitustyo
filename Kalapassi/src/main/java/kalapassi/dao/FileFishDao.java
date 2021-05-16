@@ -38,27 +38,37 @@ public class FileFishDao implements FishDao {
     }
 
     @Override
-    public boolean addCatch(String line) {
-        String[] fishInfo = line.split(";");
-        String fish = fishInfo[0];
+    public Fish create(Fish fish) throws Exception {
+        /*String[] fishInfo = line.split(";");
+        String fishType = fishInfo[0];
         String points = fishInfo[1];
-        latest = new Fish(fish, Integer.parseInt(fish));
-        return catches.add(latest);
+        latest = new Fish(fish);
+        return catches.add(latest);*/
+        
+        catches.add(fish);
+        save();
+        return fish;
+        
     }
 
     @Override
     public void save() throws Exception {
-        try (FileWriter writer = new FileWriter(new File(file))) {
+        /*try (FileWriter writer = new FileWriter(new File(file))) {
             for (Fish f : catches) {
                 writer.write(f.getUsername() + "\n");
                 writer.write("Catches & points: ");
                 writer.write("\n");
                 if (!f.getCatches().isEmpty()) {
                     for (Fish fi : f.getCatches()) {
-                        writer.write(fi.getCatch() + ";" + fi.getPoints() + "\n");
+                        writer.write(fi.getFishType() + ";" + fi.getPoints() + "\n");
                     }
                 }
                 writer.write("\n");
+            }
+        }*/
+        try (FileWriter writer = new FileWriter(new File(file))) {
+            for (Fish fish : catches) {
+                writer.write(fish.getUsername() + "; " + fish.getPoints() + "\n");
             }
         }
     }

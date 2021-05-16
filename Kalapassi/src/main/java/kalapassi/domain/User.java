@@ -11,7 +11,7 @@ public class User {
     private int points;
     private int caughtFishAmount;
     
-    public User(String name, String username) {
+    public User(String username, String name) {
         this.name = name;
         this.username = username;
         this.catchList = new ArrayList<>();
@@ -35,8 +35,8 @@ public class User {
         return this.points;
     }
     
-    public boolean addCatch(String fishType, int points) {
-        Fish f = new Fish(fishType, points);
+    public boolean addCatch(String fishType) {
+        Fish f = new Fish(fishType);
         return this.catchList.add(f);
     }
     

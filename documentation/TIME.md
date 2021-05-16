@@ -10,6 +10,9 @@
 * 3.5.2021: 3h - Domain- ja UI-lisäyksiä  
 * 4.5.2021: 5h - Tiedon säilytysmetodeihin tutustumista ja UI-lisäyksiä  
 * 11.5.2021: 2h - DAO-lisäyksiä
+* 14.5.2021: 4h - Lisäyksiä kaikkeen  
+* 15.5.2021: 4h - Lisäyksiä kaikkeen
+* 16.5.2021: 11h - Loppurutistus
 
 
-        Yht: 22h
+        Yht: 41h
