@@ -14,7 +14,7 @@ Sovellus auttaa käyttäjää pitämään kirjaa muun muuassa kalastuskerroistaa
 ## Releaset  
 [Viikko 5](https://github.com/ilkkaluu/ot-harjoitustyo/releases/tag/viikko5)
 
-[Kurssin loppupalautus]()
+[Kurssin loppupalautus](https://github.com/ilkkaluu/ot-harjoitustyo/releases/tag/viikko7)
 
 ## Komentorivikomennot    
 ### Käynnistys
