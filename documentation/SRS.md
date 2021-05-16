@@ -5,13 +5,13 @@ Sovelluksen avulla käyttäjät voivat lisätä ja seurata kalasaaliitaan. Sovel
 
 ## Perusversion tarjoama toiminnallisuus  
 ### Ennen kirjautumista  
-* Käyttäjä voi luoda oman, uniikin käyttäjätunnuksen  
-* Käyttäjä voi kirjautua sisään omalla tunnuksellaan    
-** Järjestelmä ohjaa rekisteröitymään, jos käyttäjää ei ole olemassa  
+* Käyttäjä voi luoda oman, uniikin käyttäjätunnuksen (Tehty)  
+* Käyttäjä voi kirjautua sisään omalla tunnuksellaan (Tehty)   
+** Järjestelmä ohjaa rekisteröitymään, jos käyttäjää ei ole olemassa (Tehty)  
 ### Kirjautumisen jälkeen  
-* Käyttäjä voi lisätä kalasaaliitaan 
-* Käyttäjä voi tarkastella omia kalastustilastoja
-* Käyttäjä voi kirjautua ulos järjestelmästä  
+* Käyttäjä voi lisätä kalasaaliitaan (Tehty)  
+* Käyttäjä voi tarkastella omia kalastustilastoja (Tehty)   
+* Käyttäjä voi kirjautua ulos järjestelmästä (Tehty)   
 
 ### Jatkokehitysideoita  
 Täydennysideoita, jos ajan salliessa  
