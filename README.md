@@ -1,3 +1,6 @@
+# Ohjelmistotekniikka, kevät 2021  
+Tällä kurssilla toteutan kevyen ja leikkimielisin sovelluksen, jossa käyttäjä voi lisätä kalasaaliitaan, ja saada niistä pisteitä. Ohjelman ohjelmointikielenä toimii Java.  
+
 # Kalapassi
 Sovellus auttaa käyttäjää pitämään kirjaa muun muuassa kalastuskerroistaan ja kalasaaliistaan. Sovellus antaa käyttäjälle pisteitä eri kalalajeista, jolloin käyttäjät voivat kerätä mahdollisimman monta pistettä kalastuskauden aikana. Sovellusta voi käyttää useampi eri henkilö omilla tunnuksilla.
 
