@@ -32,7 +32,7 @@ public class KalapassiUi extends Application {
         startGrid.setVgap(10);
         startGrid.setHgap(10);
 
-        Text logTitle = new Text("Kalapassi v. 0.3");                        //start screen components
+        Text logTitle = new Text("Kalapassi v. 1.0");                        //start screen components
         logTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
         Text newUserText = new Text("No account yet?");
@@ -70,7 +70,7 @@ public class KalapassiUi extends Application {
 
         Text welcome = new Text("");
 
-        stage.setTitle("Kalapassi v. 0.3");
+        stage.setTitle("Kalapassi v. 1.0");
         stage.setScene(loginScene);
         stage.show();
 
@@ -123,7 +123,7 @@ public class KalapassiUi extends Application {
         Text tutorial = new Text("Here you can: \n- add caught fish \n- follow your stats \n- receive points from the caught fish");
         Button addCatch = new Button("Add a catch");
         Button stats = new Button("Personal statistics");
-        Button leaderboard = new Button("Leaderboards");
+        //Button leaderboard = new Button("Leaderboards");
 
         Button logout = new Button("Logout");
 
@@ -133,8 +133,8 @@ public class KalapassiUi extends Application {
         menu.add(welcome, 0, 1);
         menu.add(tutorial, 0, 2);
         menu.add(addCatch, 0, 4);
-        menu.add(stats, 0, 5);
-        menu.add(leaderboard, 0, 6);
+        menu.add(stats, 0, 6);
+        //menu.add(leaderboard, 0, 6);
         menu.add(logout, 4, 4);
         menu.add(quit, 4, 6);
 
@@ -191,7 +191,7 @@ public class KalapassiUi extends Application {
         statMenu.setTop(statMenuCenter);
 
         //----
-        BorderPane topTenMenu = new BorderPane();                               //leaderboard components
+        /*BorderPane topTenMenu = new BorderPane();                               //leaderboard components
         VBox topMenuLeft = new VBox();
         topMenuLeft.setSpacing(10);
         topMenuLeft.setPadding(new Insets(10));
@@ -206,10 +206,9 @@ public class KalapassiUi extends Application {
         topMenuCenter.getChildren().add(leaders);
 
         topTenMenu.setBottom(topMenuLeft);
-        topTenMenu.setTop(topMenuCenter);
-
+        topTenMenu.setTop(topMenuCenter);*/
         Scene statScene = new Scene(statMenu, 400, 250);
-        Scene topTenScene = new Scene(topTenMenu, 400, 400);
+        //Scene topTenScene = new Scene(topTenMenu, 400, 400);
 
         //----
         loginBtn.setOnAction((ActionEvent push) -> {
@@ -226,11 +225,8 @@ public class KalapassiUi extends Application {
 
             regBtn.setOnAction((ActionEvent e) -> {
                 boolean typeError = false;
-                boolean existingError = false;
                 String name = nameTextField.getText();
                 String userName = regTextField.getText();
-                nameTextField.setText("");
-                regTextField.setText("");
 
                 if (name.length() < 3 || name.length() > 12) {
                     regNotificationName.setFill(RED);
@@ -245,22 +241,16 @@ public class KalapassiUi extends Application {
                 }
 
                 if (!typeError) {
-                    if (!fishService.createUser(name, userName)) {
-                        regNotificationUsername.setFill(RED);
-                        regNotificationUsername.setText("Username already exists");
-                        existingError = true;
-                    }
-                }
-
-                if (!typeError && !existingError) {
                     try {
-                        fishService.createUser(name, userName);
-                        stage.setScene(loginScene);
-                        System.out.println("Registeration successful");
-                        regNotificationUsername.setText("");
-                        regNotificationName.setText("");
-                        nameTextField.setText("");
-                        regTextField.setText("");
+                        if (!fishService.createUser(userName, name)) {
+                            regNotificationUsername.setFill(RED);
+                            regNotificationUsername.setText("Username already exists");
+                        } else {
+                            stage.setScene(loginScene);
+                            System.out.println("Registeration successful");
+                            regNotificationUsername.setText("");
+                            regNotificationName.setText("");
+                        }
                     } catch (Exception ex) {
                         regNotificationName.setText("Something went wrong");
                         System.out.println(e);
@@ -308,22 +298,21 @@ public class KalapassiUi extends Application {
             stage.setScene(statScene);
             stage.show();
         });
-        leaderboard.setOnAction((ActionEvent leader) -> {
+        /*leaderboard.setOnAction((ActionEvent leader) -> {
             leaders.setText("1. " + "\n" + "2. " + "\n" + "3. " + "\n" + "\n" + "\n" + "You: " + fishService.getLoggedUser().getUsername() + ", " + fishService.getPoints());
             stage.setScene(topTenScene);
             stage.show();
-        });
+        });*/
 
         back.setOnAction((ActionEvent statsBackBtn) -> {
             stage.setScene(menuScene);
             stage.show();
         });
 
-        back1.setOnAction((ActionEvent statsBackBtn1) -> {
+        /* back1.setOnAction((ActionEvent statsBackBtn1) -> {
             stage.setScene(menuScene);
             stage.show();
-        });
-
+        });*/
         //----
         logout.setOnAction((ActionEvent back2Login) -> {
             fishService.logOut();
