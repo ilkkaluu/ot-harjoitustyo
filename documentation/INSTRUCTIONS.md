@@ -4,6 +4,7 @@
 Sovellus vaatii toimiakseen juurihakemistoon tiedoston config.file, jonka sisältö on:
 > userFile=users.txt
 > fishFile=fishes.txt  
+
 Ohjelma käyttää edellämainittuja tekstitiedostoja tietokantana.  
 
 ## Käynnistäminen  
