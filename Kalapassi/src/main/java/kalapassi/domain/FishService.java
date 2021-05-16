@@ -66,6 +66,7 @@ public class FishService {
     public boolean addCatch(String fish) {
         int points = -1;
         
+        
         Fish c = new Fish(fish, points, loggedIn);
 
             try {

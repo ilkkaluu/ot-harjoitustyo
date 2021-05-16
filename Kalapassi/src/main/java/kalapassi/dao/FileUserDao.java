@@ -54,7 +54,7 @@ public class FileUserDao implements UserDao {
     public void save() throws Exception {
         try (FileWriter writer = new FileWriter(new File(file))) {
             for (User u : users) {
-                writer.write(u.getName() + ";" + u.getUsername() + "\n");
+                writer.write(u.getUsername() + ";" + u.getName() + "\n");
             }
         }
     }

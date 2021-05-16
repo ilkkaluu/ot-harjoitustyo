@@ -199,9 +199,11 @@ public class KalapassiUi extends Application {
         Button back1 = new Button("Back");
         Button toStats1 = new Button("To personal stats");
         topMenuLeft.getChildren().addAll(toTopTen1, toStats1, back1);
+        Text leaders = new Text("1. " + "\n" + "2. " + "\n" + "3. " + "\n" + "\n" + "\n");
         VBox topMenuCenter = new VBox();
         topMenuCenter.setSpacing(10);
         topMenuCenter.setPadding(new Insets(10));
+        topMenuCenter.getChildren().add(leaders);
 
         topTenMenu.setBottom(topMenuLeft);
         topTenMenu.setTop(topMenuCenter);
@@ -243,7 +245,7 @@ public class KalapassiUi extends Application {
                 }
 
                 if (!typeError) {
-                    if (!fishService.createUser(userName, name)) {
+                    if (!fishService.createUser(name, userName)) {
                         regNotificationUsername.setFill(RED);
                         regNotificationUsername.setText("Username already exists");
                         existingError = true;
@@ -300,12 +302,14 @@ public class KalapassiUi extends Application {
         //----
         stats.setOnAction((ActionEvent stat) -> {
             username.setText("Username: " + fishService.getUsername());
-            userPoints.setText("Total points: " + fishService.getLoggedUser().getPoints() + " pts");
-            userFishAmount.setText("Fish caught: " + fishService.getLoggedUser().getCaughtFishAmount());
+            userPoints.setText("Total points: " + fishService.getPoints() + " pts");
+            userFishAmount.setText("Fish caught: " + fishService.getCatches().size());
+            System.out.println(fishService.getCatches());
             stage.setScene(statScene);
             stage.show();
         });
         leaderboard.setOnAction((ActionEvent leader) -> {
+            leaders.setText("1. " + "\n" + "2. " + "\n" + "3. " + "\n" + "\n" + "\n" + "You: " + fishService.getLoggedUser().getUsername() + ", " + fishService.getPoints());
             stage.setScene(topTenScene);
             stage.show();
         });
@@ -322,6 +326,7 @@ public class KalapassiUi extends Application {
 
         //----
         logout.setOnAction((ActionEvent back2Login) -> {
+            fishService.logOut();
             stage.setScene(loginScene);
             stage.show();
         });

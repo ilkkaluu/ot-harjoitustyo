@@ -72,5 +72,17 @@ public class FileFishDao implements FishDao {
             }
         }
     }
+    
+    public int getCatchPoints() throws Exception {
+        int returnPoints = 0;
+        reader = new Scanner(new File(file));
+        while (reader.hasNextLine()) {
+            String[] parts = reader.nextLine().split(";");
+            if (parts[0].equals(user.getUsername())) {
+                returnPoints += Integer.parseInt(parts[1]);
+            }
+        }
+        return returnPoints;
+    }
 
 }

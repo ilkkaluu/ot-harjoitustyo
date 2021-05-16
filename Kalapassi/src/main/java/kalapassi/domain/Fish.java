@@ -18,7 +18,7 @@ public class Fish {
             this.points = 30;
         } else if (fish.equals("Perch")) {
             this.points = 5;
-        } else if (fish.equals("Rainbow Trout")) {
+        } else if (fish.equals("Rainbow trout")) {
             this.points = 20;
         } else if (fish.equals("Roach")) {
             this.points = 1;
@@ -35,7 +35,7 @@ public class Fish {
             this.points = 30;
         } else if (fish.equals("Perch")) {
             this.points = 5;
-        } else if (fish.equals("Rainbow Trout")) {
+        } else if (fish.equals("Rainbow trout")) {
             this.points = 20;
         } else if (fish.equals("Roach")) {
             this.points = 1;

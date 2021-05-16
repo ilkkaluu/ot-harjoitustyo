@@ -37,6 +37,7 @@ public class User {
     
     public boolean addCatch(String fishType) {
         Fish f = new Fish(fishType);
+        this.caughtFishAmount++;
         return this.catchList.add(f);
     }
     
@@ -55,7 +56,7 @@ public class User {
     }
 
     List<Fish> getCatches() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.catchList;
     }
 
     boolean addCatch(Fish c) {
