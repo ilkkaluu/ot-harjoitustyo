@@ -4,7 +4,7 @@ Sovellus auttaa käyttäjää pitämään kirjaa muun muuassa kalastuskerroistaa
 ## Dokumentaatio
 * [Ohjelman kuvaus](https://github.com/ilkkaluu/ot-harjoitustyo/blob/master/documentation/DESIGN.md)
 * [Työaikakirjanpito](https://github.com/ilkkaluu/ot-harjoitustyo/blob/master/documentation/TIME.md)  
-* Arkkitehtuuri  
+* [Arkkitehtuuri](https://github.com/ilkkaluu/ot-harjoitustyo/blob/master/documentation/ARCHITECTURE.md)
 * [Vaativuusmäärittely](https://github.com/ilkkaluu/ot-harjoitustyo/blob/master/documentation/SRS.md)  
 * [Käyttöohje]
 
